@@ -1,5 +1,4 @@
 <?php
-
 /** This file is part of KCFinder project
   *
   *      @desc Base configuration file
@@ -16,12 +15,18 @@
    even if you are using session configuration.
    See http://kcfinder.sunhater.com/install for setting descriptions */
 
+if (isset($_COOKIE['cakeLoggedIn'])) {
+    $authorized = $_COOKIE['cakeLoggedIn'];
+} else {
+    $authorized = false;
+}
+
 $_CONFIG = array(
 
 
 // GENERAL SETTINGS
 
-    'disabled' => true,
+    'disabled' => !$authorized,
     'uploadURL' => "upload",
     'uploadDir' => "",
     'theme' => "default",
@@ -57,8 +62,8 @@ $_CONFIG = array(
 
 // DISABLE / ENABLE SETTINGS
 
-    'denyZipDownload' => false,
-    'denyUpdateCheck' => false,
+    'denyZipDownload' => true,
+    'denyUpdateCheck' => true,
     'denyExtensionRename' => false,
 
 
